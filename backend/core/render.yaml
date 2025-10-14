@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: jrm-erp-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn core.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jrm-erp-db
+          property: connectionString
